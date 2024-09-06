@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h2>WebSocket Test</h2>
+    <button onclick="sendMessage()">Send Message</button>
+    <p id="response"></p>
+
+    <script>
+        var socket = new WebSocket("ws://localhost:8080/ws");
+
+         socket.onmessage = function(event) {
+            var responseElement = document.createElement('p');
+            responseElement.innerText = event.data;
+            document.body.appendChild(responseElement);
+        };
+
+        function sendMessage() {
+            socket.send("Hello, everyone!");
+        }
+    </script>
+</body>
+</html>
